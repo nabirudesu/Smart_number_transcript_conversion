@@ -22,66 +22,96 @@ def match_ones(dinar_number,repetetif_ones_words):
             return(repetetif_ones_words[8])
     print('أحاد')
 def match_tens(dinar_number,repetetif_ones_words,repetitif_tens_words):
-    match dinar_number / 10:
-        case 1:
-            return(repetitif_tens_words[0])
-        case 2:
-            return(repetitif_tens_words[1])
-        case 3:
-            return(repetitif_tens_words[2])
-        case 4:
-            return(repetitif_tens_words[3])
-        case 5:
-            return(repetitif_tens_words[4])
-        case 6:
-            return(repetitif_tens_words[5])
-        case 7:
-            return(repetitif_tens_words[6])
-        case 8:
-            return(repetitif_tens_words[7])
-        case 9:
-            return(repetitif_tens_words[8])   
+    match dinar_number:
+        case 10:
+            return(repetetif_ones_words[9])
+        case 11:
+            return(repetetif_ones_words[10])
+        case 12:
+            return(repetetif_ones_words[11])
+        case _ if dinar_number < 10:
+            return(match_ones(dinar_number,repetetif_ones_words))
         case _:
-            match dinar_number // 10:
+            match dinar_number / 10:
                 case 1:
-                    return(repetitif_tens_words[0]+' و '+match_ones(dinar_number%10,repetetif_ones_words))
+                    return(repetitif_tens_words[0])
                 case 2:
-                    return(repetitif_tens_words[1]+' و '+match_ones(dinar_number%10,repetetif_ones_words))
+                    return(repetitif_tens_words[1])
                 case 3:
-                    return(repetitif_tens_words[2]+' و '+match_ones(dinar_number%10,repetetif_ones_words))
+                    return(repetitif_tens_words[2])
                 case 4:
-                    return(repetitif_tens_words[3]+' و '+match_ones(dinar_number%10,repetetif_ones_words))
+                    return(repetitif_tens_words[3])
                 case 5:
-                    return(repetitif_tens_words[4]+' و '+match_ones(dinar_number%10,repetetif_ones_words))
+                    return(repetitif_tens_words[4])
                 case 6:
-                    return(repetitif_tens_words[5]+' و '+match_ones(dinar_number%10,repetetif_ones_words))
+                    return(repetitif_tens_words[5])
                 case 7:
-                    return(repetitif_tens_words[6]+' و '+match_ones(dinar_number%10,repetetif_ones_words))
+                    return(repetitif_tens_words[6])
                 case 8:
-                    return(repetitif_tens_words[7]+' و '+match_ones(dinar_number%10,repetetif_ones_words))
+                    return(repetitif_tens_words[7])
                 case 9:
-                    return(repetitif_tens_words[8]+' و '+match_ones(dinar_number%10,repetetif_ones_words))                
+                    return(repetitif_tens_words[8])   
+                case _:
+                    match dinar_number // 10:
+                        case 1:
+                            return(match_ones(dinar_number%10,repetetif_ones_words)+' و '+repetitif_tens_words[0])
+                        case 2:
+                            return(match_ones(dinar_number%10,repetetif_ones_words)+' و '+repetitif_tens_words[1])
+                        case 3:
+                            return(match_ones(dinar_number%10,repetetif_ones_words)+' و '+repetitif_tens_words[2])
+                        case 4:
+                            return(match_ones(dinar_number%10,repetetif_ones_words)+' و '+repetitif_tens_words[3])
+                        case 5:
+                            return(match_ones(dinar_number%10,repetetif_ones_words)+' و '+repetitif_tens_words[4])
+                        case 6:
+                            return(match_ones(dinar_number%10,repetetif_ones_words)+' و '+repetitif_tens_words[5])
+                        case 7:
+                            return(match_ones(dinar_number%10,repetetif_ones_words)+' و '+repetitif_tens_words[6])
+                        case 8:
+                            return(match_ones(dinar_number%10,repetetif_ones_words)+' و '+repetitif_tens_words[7])
+                        case 9:
+                            return(match_ones(dinar_number%10,repetetif_ones_words)+' و '+repetitif_tens_words[8])                
 
 def match_hundreds(dinar_number,repetetif_ones_words,repetitif_tens_words,repetitif_hundreds_words):
-    match dinar_number//100:
+    match dinar_number / 100:
         case 1:
-            return(repetitif_hundreds_words[0]+' و '+match_tens(dinar_number%10,repetetif_ones_words,repetitif_tens_words))
+            return(repetitif_hundreds_words[0])
         case 2:
-            return(repetitif_hundreds_words[1]+' و '+match_tens(dinar_number%10,repetetif_ones_words,repetitif_tens_words))
+            return(repetitif_hundreds_words[1])
         case 3:
-            return(repetitif_hundreds_words[2]+' و '+match_tens(dinar_number%10,repetetif_ones_words,repetitif_tens_words))
+            return(repetitif_hundreds_words[2])
         case 4:
-            return(repetitif_hundreds_words[3]+' و '+match_tens(dinar_number%10,repetetif_ones_words,repetitif_tens_words))
+            return(repetitif_hundreds_words[3])
         case 5:
-            return(repetitif_hundreds_words[4]+' و '+match_tens(dinar_number%10,repetetif_ones_words,repetitif_tens_words))
+            return(repetitif_hundreds_words[4])
         case 6:
-            return(repetitif_hundreds_words[5]+' و '+match_tens(dinar_number%10,repetetif_ones_words,repetitif_tens_words))
+            return(repetitif_hundreds_words[5])
         case 7:
-            return(repetitif_hundreds_words[6]+' و '+match_tens(dinar_number%10,repetetif_ones_words,repetitif_tens_words))
+            return(repetitif_hundreds_words[6])
         case 8:
-            return(repetitif_hundreds_words[7]+' و '+match_tens(dinar_number%10,repetetif_ones_words,repetitif_tens_words))
+            return(repetitif_hundreds_words[7])
         case 9:
-            return(repetitif_hundreds_words[8]+' و '+match_tens(dinar_number%10,repetetif_ones_words,repetitif_tens_words))
+            return(repetitif_hundreds_words[8])   
+        case _:
+            match dinar_number//100:
+                case 1:
+                    return(repetitif_hundreds_words[0]+' و '+match_tens(dinar_number%100,repetetif_ones_words,repetitif_tens_words))
+                case 2:
+                    return(repetitif_hundreds_words[1]+' و '+match_tens(dinar_number%100,repetetif_ones_words,repetitif_tens_words))
+                case 3:
+                    return(repetitif_hundreds_words[2]+' و '+match_tens(dinar_number%100,repetetif_ones_words,repetitif_tens_words))
+                case 4:
+                    return(repetitif_hundreds_words[3]+' و '+match_tens(dinar_number%100,repetetif_ones_words,repetitif_tens_words))
+                case 5:
+                    return(repetitif_hundreds_words[4]+' و '+match_tens(dinar_number%100,repetetif_ones_words,repetitif_tens_words))
+                case 6:
+                    return(repetitif_hundreds_words[5]+' و '+match_tens(dinar_number%100,repetetif_ones_words,repetitif_tens_words))
+                case 7:
+                    return(repetitif_hundreds_words[6]+' و '+match_tens(dinar_number%100,repetetif_ones_words,repetitif_tens_words))
+                case 8:
+                    return(repetitif_hundreds_words[7]+' و '+match_tens(dinar_number%100,repetetif_ones_words,repetitif_tens_words))
+                case 9:
+                    return(repetitif_hundreds_words[8]+' و '+match_tens(dinar_number%100,repetetif_ones_words,repetitif_tens_words))
 
 def match_thousands(dinar_number,repetetif_ones_words,repetitif_tens_words,repetitif_hundreds_words):
     match dinar_number//1000:
@@ -109,7 +139,7 @@ def match_thousands(dinar_number,repetetif_ones_words,repetitif_tens_words,repet
 def dinar_number_to_arabic_words(dinar_number):
     repetetif_ones_words=['واحد','اثنان','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة','عشرة','أحد عشر','اثنا عشر']
     repetitif_tens_words=['عشر','عشرون','ثلاثون','أربعون','خمسون','ستون','سبعون','ثمانون','تسعون']
-    repetitif_hundreds_words=['مائة','مئتا','ثلاثمائة','أربعمائة','خمسمائة','ستمائة','سبعمائة','ثمانمائة','تسعمائة']
+    repetitif_hundreds_words=['مائة','مئتان','ثلاثمائة','أربعمائة','خمسمائة','ستمائة','سبعمائة','ثمانمائة','تسعمائة']
     repetitif_thousands_words=['ألف','الفان','ألفا','آلاف']
     repetitif_millions_words=['مليون','مليونا','ملايين']
     repetitif_billions_words=['مليار','مليارا','مليارات']
@@ -117,15 +147,7 @@ def dinar_number_to_arabic_words(dinar_number):
         case 1:
             print(match_ones(dinar_number,repetetif_ones_words))
         case 2:
-            match dinar_number:
-                case 10:
-                    print(repetetif_ones_words[9])
-                case 11:
-                    print(repetetif_ones_words[10])
-                case 12:
-                    print(repetetif_ones_words[11])
-                case _:
-                    print(match_tens(dinar_number,repetetif_ones_words,repetitif_tens_words))
+            print(match_tens(dinar_number,repetetif_ones_words,repetitif_tens_words))
             print('عشرات')
         case 3:
             print(match_hundreds(dinar_number,repetetif_ones_words,repetitif_tens_words,repetitif_hundreds_words))
