@@ -1,0 +1,77 @@
+def dinar_number_to_arabic_words(dinar_number):
+    repetetif_ones_words=['واحد','اثنان','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة','عشرة','أحد عشر','اثنا عشر']
+    repetitif_tens_words=['عشر','عشرون','ثلاثون','أربعون','خمسون','ستون','سبعون','ثمانون','تسعون']
+    repetitif_hundreds_words=['مائة','مئتا','ثلاثمائة','أربعمائة','خمسمائة','ستمائة','سبعمائة','ثمانمائة','تسعمائة']
+    repetitif_thousands_words=['ألف','ألفا','آلاف']
+    repetitif_millions_words=['مليون','مليونا','ملايين']
+    repetitif_billions_words=['مليار','مليارا','مليارات']
+    match len(str(dinar_number)):
+        case 1:
+            match dinar_number:
+                case 1:
+                    print(repetetif_ones_words[0])
+                case 2:
+                    print(repetetif_ones_words[1])
+                case 3:
+                    print(repetetif_ones_words[2])
+                case 4:
+                    print(repetetif_ones_words[3])
+                case 5:
+                    print(repetetif_ones_words[4])
+                case 6:
+                    print(repetetif_ones_words[5])
+                case 7:
+                    print(repetetif_ones_words[6])
+                case 8:
+                    print(repetetif_ones_words[7])
+                case 9:
+                    print(repetetif_ones_words[8])
+            print('أحاد')
+        case 2:
+            match dinar_number:
+                case 10:
+                    print('عشرة')
+                case 11:
+                    print('أحد عشر')
+                case 12:
+                    print('اثنا عشر')
+                case 13:
+                    print('ثلاثة عشر')
+                case 14:
+                    print('أربعة عشر')
+                case 15:
+                    print('خمسة عشر')
+                case 16:
+                    print('ستة عشر')
+                case 17:
+                    print('سبعة عشر  ')
+                case 18:
+                    print('ثمانية عشر')
+                case 19:
+                    print('تسعة عشر')
+
+            print('عشرات')
+        case 3:
+            print('مئات')
+        case 4:
+            print('آلاف')
+        case 5:
+            print('عشرات الآلاف')
+        case 6:
+            print('مئات الآلاف')
+        case 7:
+            print('ملايين')
+        case 8:
+            print('عشرات الملايين')
+    
+    ones=1
+    tens=10
+    hundreds=100
+    thousands=1000
+    ten_thousands=10000
+    hundred_thousands=100000
+    miliions=1000000
+    ten_millions=10000000    
+    
+    #"hundred_millions=100000000   biliions=1000000000    ten_biliions=10000000000    hundred_biliions=100000000000"
+
