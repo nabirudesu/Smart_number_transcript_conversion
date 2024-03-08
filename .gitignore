@@ -1,0 +1,6 @@
+*.zip
+*.mp3
+*.wav
+*.m4a
+__pycache__/
+vosk_model/
