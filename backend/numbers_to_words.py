@@ -255,8 +255,8 @@ def dinar_number_to_arabic_words(dinar_number):
             return(match_millions(dinar_number,repetetif_ones_words,repetitif_tens_words,repetitif_hundreds_words,repetitif_thousands_words,repetitif_millions_words))
         case _:
             print('المبلغ تخطى الحد المسموح بسحبه بالصك البريدي')
-
-for i in range(1,5):
-    dinar_number=int(input("entre a number between 1 and 999 : \n"))
-    dinar_words=dinar_number_to_arabic_words(dinar_number)
-    print(dinar_words+' دينار جزائري')
+if __name__=="__main__":
+    for i in range(1,5):
+        dinar_number=int(input("entre a number between 1 and 999 : \n"))
+        dinar_words=dinar_number_to_arabic_words(dinar_number)
+        print(dinar_words+' دينار جزائري')

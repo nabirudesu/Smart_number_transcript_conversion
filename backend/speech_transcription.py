@@ -2,7 +2,7 @@ import whisper
 import numpy as np
 import Levenshtein
 import re
-import numbers_to_words
+from numbers_to_words import dinar_number_to_arabic_words
 # data to use for correction
 
 # Loading the model
@@ -22,7 +22,7 @@ word_list =['و','جزائري','دينار','واحد','اثنان','ثلاثة
 numbers_in_result= re.findall(r'\d+', audio_transcript)
 print(numbers_in_result)
 for i in numbers_in_result:
-  converted_numbers= numbers_to_words.dinar_number_to_arabic_words(int(i))
+  converted_numbers= dinar_number_to_arabic_words(int(i))
   text_audio_trascript=re.sub(r'\d+',converted_numbers,audio_transcript)
 print(text_audio_trascript)
 def Similarity_correction(transcript, word_list):
