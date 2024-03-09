@@ -1,0 +1,6 @@
+flask==2.2.3
+openai-whisper
+numpy
+Levenshtein
+regex
+gtts==2.5.1
