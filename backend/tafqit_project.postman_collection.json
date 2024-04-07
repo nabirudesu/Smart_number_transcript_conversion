@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "9c180d6b-21cb-4e11-9a19-8b804f6d6292",
+		"name": "tafqit_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13586834"
+	},
+	"item": [
+		{
+			"name": "number_to_words",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\":260000}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/number_to_words",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"number_to_words"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voice_to_words",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "audio",
+							"type": "file",
+							"src": "postman-cloud:///1eede70e-0196-4c50-850a-51aa8306e928"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/voice_to_words",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"voice_to_words"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
