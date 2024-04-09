@@ -1,5 +1,5 @@
 import './App.css';
-import CalculateForm from './components/CalculateForm.tsx';
+import CalculateForm from './components/CalculateForm.jsx';
 
 function App() {
   return (
