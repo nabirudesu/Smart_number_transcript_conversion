@@ -1,18 +1,24 @@
 from flask import Flask,request,jsonify
 from numbers_to_words import dinar_number_to_arabic_words
 from speech_transcription import arabic_audio_transcript
+from flask_cors import CORS, cross_origin
+import logging
 # WE will create a flask app here
 # we will create the prpocess of conversion and expose the endpoint of every function we have
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/number_to_words": {"origins": "*"}})
 
 # Define a route for handling POST requests to transcribe audio
 #@app.route('/num_to_words', methods=['POST'])
 @app.post("/number_to_words")
 def convert_to_words():
     # Assuming you receive audio data in the request body
-    number = request.json
-    number_in_words=dinar_number_to_arabic_words(number["number"])    
+    data = request.json
+    if data["currency"]=="Dinar":
+        number_in_words=dinar_number_to_arabic_words(int(data["number"]))
+    else :     
+        number_in_words=dinar_number_to_arabic_words(int(data["number"])/100)
     # Return the transcription result as JSON
     return jsonify({'transcription': number_in_words+' دينار جزائري'})
 # Define a route for handling POST requests to transcribe audio
