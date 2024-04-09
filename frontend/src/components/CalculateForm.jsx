@@ -4,31 +4,33 @@ import React from 'react';
 import * as Yup from 'yup';
 
 const CalculateForm = () => {
-  const [dinarNumber, setDinarNumber] = useState(0)
   const [currency, setCurrency] = useState("Dinar")
   const [dinarWords, setDinarWords] = useState('')
   const formSchema = Yup.object().shape({
-    number: Yup.number().min(0, 'يجب ان تكون القيمة اعلى من الصفر').required(" ادخل المبلغ"),
+    number: Yup.number().when('currency',{
+      is : (value)=> value ==='Dinar',
+      then: (schema) => schema.min(0, 'يجب ان تكون القيمة اعلى من الصفر').max(9999999,"المبلغ تعدى المسموح به").required("*"), 
+      otherwise: (schema) => schema.min(100, 'يجب ان تكون القيمة اعلى من المئة سنتيم').max(999999999,"المبلغ تعدى المسموح به").required("*")}),
     currency: Yup.string()
     });
   const formik = useFormik({
     initialValues: {
       number: undefined,
+      currency :"Dinar"
     },
     validationSchema: formSchema,
     onSubmit: async (values) => {
       let NumberSubmitted = 0
-      console.log(values)
+      let currencySubmitted= ""
       // here we return the dinarTextValue
-      if (values.currency == "Dinar"){
-        NumberSubmitted= values.number
-        console.log(NumberSubmitted)
-      } else {NumberSubmitted= values.number/100}              
+      NumberSubmitted= values.number
+      currencySubmitted = values.currency
       const response =  await fetch('http://127.0.0.1:5000/number_to_words',{
       method: 'POST',
       mode:'cors',
       body: JSON.stringify({
         'number': NumberSubmitted,
+        'currency': currencySubmitted,
       }),
       headers:{'content-type':'application/json; charset=UTF-8'},
       }).then((response) => response.json()).then((data) => data.transcription)
@@ -80,11 +82,11 @@ const CalculateForm = () => {
               <select 
                 dir='rtl'
                 id='Currency'
-                name = 'Currency'
+                name = 'currency'
                 type='number'
                 className='bg-gray-200 text-slate-900 color-slate-900 px-4 py-2 rounded-md outline-none'
-                value={currency}
-                onChange={e => setCurrency(e.target.value)}
+                value={formik.values.currency}
+                onChange={formik.handleChange}
                 >
                 <option value="Dinar">الدينار الجزائري</option>
                 <option value="Centime">السنتيم</option>
