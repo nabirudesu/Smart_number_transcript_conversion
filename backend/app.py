@@ -7,7 +7,7 @@ import logging
 # we will create the prpocess of conversion and expose the endpoint of every function we have
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/number_to_words": {"origins": "*"}})
+CORS(app)
 
 # Define a route for handling POST requests to transcribe audio
 #@app.route('/num_to_words', methods=['POST'])
@@ -18,7 +18,7 @@ def convert_to_words():
     if data["currency"]=="Dinar":
         number_in_words=dinar_number_to_arabic_words(int(data["number"]))
     else :     
-        number_in_words=dinar_number_to_arabic_words(int(data["number"])/100)
+        number_in_words=dinar_number_to_arabic_words(int(int(data["number"])/100))
     # Return the transcription result as JSON
     return jsonify({'transcription': number_in_words+' دينار جزائري'})
 # Define a route for handling POST requests to transcribe audio
