@@ -29,17 +29,16 @@ def arabic_audio_transcript(filename):
     try:
         result = model.transcribe(filename,language='ar',fp16=False,verbose=True)
         print("Transcription:", result["text"])
+        audio_transcript= result["text"]
+        word_list =['و','جزائري','دينار','واحد','اثنان','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة','عشرة','أحد عشر','اثنا عشر','عشر','عشرون','ثلاثون','أربعون','خمسون','ستون','سبعون','ثمانون','تسعون','مائة','مئتان','ثلاثمائة','أربعمائة','خمسمائة','ستمائة','سبعمائة','ثمانمائة','تسعمائة','ألف','الفان','ألفا','آلاف','مليار','ملياران','مليارات','مليون','مليونان','ملايين']
+
+        #similarity_scores=[]
+        numbers_in_result= re.findall(r'\d+', audio_transcript)
+        for i in numbers_in_result:
+            converted_numbers= dinar_number_to_arabic_words(int(i))
+            text_audio_trascript=re.sub(r'\d+',converted_numbers,audio_transcript)
+        final_transcript = Similarity_correction(text_audio_trascript,word_list)
     except Exception as e:
-        print("Error during transcription:", e)
-
-    audio_transcript= result["text"]
-    word_list =['و','جزائري','دينار','واحد','اثنان','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة','عشرة','أحد عشر','اثنا عشر','عشر','عشرون','ثلاثون','أربعون','خمسون','ستون','سبعون','ثمانون','تسعون','مائة','مئتان','ثلاثمائة','أربعمائة','خمسمائة','ستمائة','سبعمائة','ثمانمائة','تسعمائة','ألف','الفان','ألفا','آلاف','مليار','ملياران','مليارات','مليون','مليونان','ملايين']
-
-    #similarity_scores=[]
-    numbers_in_result= re.findall(r'\d+', audio_transcript)
-    for i in numbers_in_result:
-        converted_numbers= dinar_number_to_arabic_words(int(i))
-        text_audio_trascript=re.sub(r'\d+',converted_numbers,audio_transcript)
-    final_transcript = Similarity_correction(text_audio_trascript,word_list)
+        return "التسجيل الصوتي خاطئ أو غير قابل للتحويل"
     return(final_transcript)
 
