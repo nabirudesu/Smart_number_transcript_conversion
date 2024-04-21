@@ -10,39 +10,25 @@ class AudioRecorder extends React.Component {
     this.state = {
       recordState: null,
       audioData: null,
-      dinarWords: null
+      dinarWords: null,
+      isRecording:false
     }
   }
   componentDidMount() {
     const canvas = document.querySelector('canvas');
-    canvas.style.width = '250px'
-    canvas.style.height = '100px'
+    canvas.style.width = '350px'
+    canvas.style.height = '80px'
   }
-/*  start = () => {
-    this.setState({
-      recordState: RecordState.START
-    })
-  }
-
-  pause = () => {
-    this.setState({
-      recordState: RecordState.PAUSE
-    })
-  }
-
-  stop = () => {
-    this.setState({
-      recordState: RecordState.STOP
-    })
-  } */
   click =() => {
     if (this.state.recordState == "stop" || this.state.recordState == null){
       this.setState({
-        recordState: RecordState.START
+        recordState: RecordState.START,
+        isRecording: true
       })
     } else if (this.state.recordState == "start"){
       this.setState({
-        recordState: RecordState.STOP
+        recordState: RecordState.STOP,
+        isRecording: false
       })
 
     }
@@ -50,7 +36,7 @@ class AudioRecorder extends React.Component {
   onStop = async (audioData) => {
     
     const audioBlob = audioData.blob;
-    const audioFile = new File([audioBlob], 'recordedAudio.wav', { type: 'audio/wav' });
+    const audioFile = new File([audioBlob], 'backend_audio.wav', { type: 'audio/wav' });
   
     const formData = new FormData();
     formData.append('audio', audioFile);
@@ -62,39 +48,44 @@ class AudioRecorder extends React.Component {
     this.setState(
       {dinarWords: response}
     )
+    console.log(this.dinarWords)
     console.log(response);
   }
-
+  result = () => (
+    <div className='w-full'>
+      <h1 dir='rtl' className='text-xl text-green-300 mb-2'>
+        النتيجة
+      </h1>
+      <div className='bg-gray-200 text-slate-900 color-slate-900 py-2 rounded-md'>
+        <p dir='rtl' className='text-xl h-20 p-1.5'>
+          {/* display the value rended from the backend dinar_number_to_arabic_words */}
+          {this.state.dinarWords}
+        </p>
+      </div>
+    </div>
+  );
   render() {
     const { recordState } = this.state
-
     return (
-      <section className='bg-opacity-60 lg:w-4/5 w-4/5 bg-black p-8 rounded-xl'> 
-        <h1 dir='rtl' className='text-3xl text-white'>
-          تحويل الأعداد العربية إلى ما يقابلها كتابة
-        </h1>
+      <div > 
         <div className='flex justify-center gap-10 flex-col'>
           <div className='flex flex-col gap-10 w-full'>
             <div className='flex justify-evenly flex-wrap gap-2'>
-              <AudioReactRecorder state={recordState} onStop={this.onStop} backgroundColor='rgb(255,255,255)' />
-              <audio id='audio' controls src={this.state.audioData ? this.state.audioData.url : null} />
-              <button id='record' onClick={this.click} dir='rtl' className='bg-blue-500 text-white size-16 px-2 py-1 rounded-md hover:bg-blue-400 transition-colors'>
-                Record
-              </button>
+              <AudioReactRecorder state={recordState} onStop={this.onStop} backgroundColor='rgb(255,255,255)' />              
+              <div className='flex flex-col gap-4'>
+                <label type=" rtl"> التسجيل صوتي</label>
+                <button id='record' onClick={this.click} dir='rtl' className='bg-blue-500 text-white w-full px-2 py-1 rounded-md hover:bg-blue-400 transition-colors'>
+                  {this.state.isRecording
+                  ? "تسجيل . . ."
+                  : "سجل"}
+                </button>
+              </div>
+
             </div>
           </div>       
         </div>
-        <div className='w-full'>
-          <h1 dir='rtl' className='text-xl text-green-300'>
-            النتيجة
-          </h1>
-          <div className='bg-gray-200 text-slate-900 color-slate-900 py-2 rounded-md h-full'>
-            <p dir='rtl' className='text-xl'>
-              {this.dinarWords}
-            </p>
-          </div>
-        </div>
-      </section>)}
+        <this.result/>
+      </div>)}
 }
 
 export default AudioRecorder
